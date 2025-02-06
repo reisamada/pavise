@@ -1,11 +1,9 @@
 "use client"
-import Image from "next/image";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { Particles } from "@/components/ui/particles";
 import { TypingAnimation } from "@/components/ui/typing-animation";
 import { RainbowButton } from "@/components/ui/rainbow-button";
-import { TextAnimate } from "@/components/ui/text-animate";
 
 import { ChevronRight } from "lucide-react";
 
