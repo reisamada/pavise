@@ -1,101 +1,76 @@
+"use client"
 import Image from "next/image";
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
+import { Particles } from "@/components/ui/particles";
+import { TypingAnimation } from "@/components/ui/typing-animation";
+import { RainbowButton } from "@/components/ui/rainbow-button";
+import { TextAnimate } from "@/components/ui/text-animate";
+
+import { ChevronRight } from "lucide-react";
+
+import { cn } from "@/lib/utils";
+import { AnimatedGradientText } from "@/components/ui/animated-gradient-text";
+
+import Description from "./components/description/Description";
+
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const { resolvedTheme } = useTheme();
+  const [color, setColor] = useState("#ffffff");
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+  useEffect(() => {
+    setColor(resolvedTheme === "dark" ? "#ffffff" : "#000000");
+  }, [resolvedTheme]);
+  return (
+    <>
+      <main>
+        <section>
+          <div className="relative flex h-[500px] w-full flex-col items-center justify-center overflow-hidden rounded-lg border bg-background md:shadow-xl">
+          <div>
+            <img className="w-40 rounded-full mt-2 mb-3 shadow-lg" src="/img/Abstract_Split_Face_Artwork_With_Mosaic_Textures-removebg-preview.png"/>
+          </div>
+            <div className="flex items-center justify-center">
+              <AnimatedGradientText>
+                🎉 <hr className="mx-2 h-4 w-px shrink-0 bg-gray-300" />{" "}
+                <span
+                  className={cn(
+                    `inline animate-gradient bg-gradient-to-r from-[#ffaa40] via-[#9c40ff] to-[#ffaa40] bg-[length:var(--bg-size)_100%] bg-clip-text text-transparent`,
+                  )}
+                >
+                  Beta Version
+                </span>
+                <ChevronRight className="ml-1 size-3 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" />
+              </AnimatedGradientText>
+            </div><span className="pointer-events-none z-10 whitespace-pre-wrap text-center text-8xl font-semibold leading-none">
+              <TypingAnimation>Pavise – AI Agent for Brain Tumor Diagnosis</TypingAnimation>
+            </span>
+            <div className="text-center mb-4 container mx-auto">
+              <p>Pavise is an advanced AI-driven solution designed to assist in the early detection and diagnosis of brain tumors. By leveraging cutting-edge artificial intelligence, Pavise analyzes medical data with unmatched accuracy, providing fast and reliable insights for healthcare professionals.</p>
+            </div>
+            <div className="flex gap-1">
+              <div>
+                <RainbowButton className="text-white">Get Started</RainbowButton>
+              </div>
+              <div>
+                <RainbowButton className="text-white btn-white">More</RainbowButton>
+              </div>
+            </div>
+            <Particles
+              className="absolute inset-0 z-0"
+              quantity={100}
+              ease={80}
+              color={color}
+              refresh
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
+          </div>
+        </section>
+        <section className="bg-black py-4 text-white">
+          <div>
+            <Description />
+          </div>
+        </section>
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+    </>
   );
 }
