@@ -10,7 +10,11 @@ import { ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { AnimatedGradientText } from "@/components/ui/animated-gradient-text";
 
+import Footer from "./components/footer/Footer";
+
 import Description from "./components/description/Description";
+import { FileInput } from "./components/fileinput/FileInput";
+import Image from "next/image";
 
 
 export default function Home() {
@@ -25,9 +29,16 @@ export default function Home() {
       <main>
         <section>
           <div className="relative flex h-[500px] w-full flex-col items-center justify-center overflow-hidden rounded-lg border bg-background md:shadow-xl">
-          <div>
-            <img className="w-40 rounded-full mt-2 mb-3 shadow-lg" src="/img/Abstract_Split_Face_Artwork_With_Mosaic_Textures-removebg-preview.png"/>
-          </div>
+            <div className="w-40 h-40 rounded-full overflow-hidden mt-2 mb-3 shadow-lg relative">
+              <Image
+                src="/img/Abstract_Split_Face_Artwork_With_Mosaic_Textures-removebg-preview.png"
+                alt="Abstract split face artwork with mosaic textures"
+                width={150}
+                height={150}
+                className="object-cover w-full h-full"
+              />
+            </div>
+
             <div className="flex items-center justify-center">
               <AnimatedGradientText>
                 🎉 <hr className="mx-2 h-4 w-px shrink-0 bg-gray-300" />{" "}
@@ -67,6 +78,20 @@ export default function Home() {
           <div>
             <Description />
           </div>
+
+          <div className="flex justify-center mt-10">
+            <FileInput
+              id="document-upload"
+              multiple
+              accept=".jpg,.png,.jpeg"
+              onChange={(e) => {
+                console.log("Files selected:", e.target.files);
+              }}
+            />
+          </div>
+        </section>
+        <section>
+          <Footer />
         </section>
       </main>
     </>
